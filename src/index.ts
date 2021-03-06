@@ -1,14 +1,14 @@
 class EventHub {
-    cache = {}
-    on(eventName, fn) {
+    private cache: { [key: string]: Array<(data: unknown) => void> } = {}
+    on(eventName: string, fn: (data: unknown) => void) {
         //初始化，如果this.cache[eventName] 是 undefined 就返回 []
         this.cache[eventName] = this.cache[eventName] || []
         this.cache[eventName].push(fn)
     }
-    emit(eventName, data?) {
+    emit(eventName: string, data?: unknown) {
         (this.cache[eventName] || []).forEach(fn => fn(data));
     }
-    off(eventName, fn) {
+    off(eventName: string, fn: (data: unknown) => void) {
         const index = indexOf(this.cache[eventName], fn)
         if (index === -1) return
         this.cache[eventName].splice(index, 1)

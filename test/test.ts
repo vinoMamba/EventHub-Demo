@@ -1,14 +1,15 @@
-import EventHub from '../src/index';
+import EventHub from '../src/index'
 
 const eventHub = new EventHub()
 
-console.assert(eventHub instanceof Object === true, 'eventHub是一个对象')
+console.assert(eventHub instanceof Object === true)
 
-//on emit
+//订阅
 let called = false
 eventHub.on('xxx', () => {
     called = true
-    console.log("called:" + called)
+    console.log(called)
 })
 
+//发布
 eventHub.emit('xxx')

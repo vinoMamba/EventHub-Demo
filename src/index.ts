@@ -16,6 +16,12 @@ class EventHub {
 }
 export default EventHub
 
+/**
+ * helper function  indexOf 
+ * @param array 
+ * @param item 
+ * @returns 
+ */
 function indexOf(array, item) {
     if (array === undefined) return -1
     let index = -1

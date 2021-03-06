@@ -1,19 +1,12 @@
 class EventHub {
     cache = {}
     on(eventName, fn) {
-        if (this.cache[eventName] === undefined) {
-            this.cache[eventName] = []
-        }
+        //初始化，如果this.cache[eventName] 是 undefined 就返回 []
+        this.cache[eventName] = this.cache[eventName] || []
         this.cache[eventName].push(fn)
     }
-    emit(eventName) {
-        let array = this.cache[eventName]
-        if (array === undefined) {
-            array = []
-        }
-        array.forEach(fn => {
-            fn()
-        });
+    emit(eventName, data) {
+        (this.cache[eventName] || []).forEach(fn => fn(data));
     }
 }
 
